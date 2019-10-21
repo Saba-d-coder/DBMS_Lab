@@ -1,0 +1,56 @@
+create table book(
+    isbn int primary key,
+    title varchar(20),
+    author varchar(20),
+    publisher varchar(100));
+   
+create table student(
+    usn varchar(10) primary key,
+    name varchar(10),
+    sem int,
+    deptno int);
+    
+create table borrow(
+    isbn int,
+    usn varchar(10),
+    date varchar(10),
+    primary key(isbn,usn),
+    foreign key(isbn) references book(isbn) on delete cascade,
+    foreign key(usn) references student(usn) on delete cascade);
+    
+insert into book values(100,'dbms','Korth','McGraw-Hill');
+insert into book values(123,'ipr','Wadhera','Universal-law-publishing');    
+insert into book values(200,'CN','Forouzan','McGraw-Hill');    
+
+insert into student values('1ms17is052','Saba',5,2);
+insert into student values('1ms17is053','Kritika',5,10);    
+insert into student values('1ms17is056','Livia',5,6);
+    
+insert into borrow values(123,'1ms17is052','10aug');
+insert into borrow values(123,'1ms17is053','12sept');
+insert into borrow values(100,'1ms17is052','9feb');
+insert into borrow values(200,'1ms17is056','10jun');
+    
+
+-----------------------------------------------queries-------------------------------------------
+    
+--a)
+
+        
+select name
+from borrow,student
+where student.usn=borrow.usn and isbn=123;
+
+--b)
+
+select name
+from borrow,book,student
+where book.isbn=borrow.isbn and borrow.usn=student.usn and title='dbms';
+
+
+--c)
+
+select count(isbn) total_books, name
+from student,borrow
+where borrow.usn=student.usn
+group by name;
