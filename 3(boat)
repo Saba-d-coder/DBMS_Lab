@@ -1,0 +1,73 @@
+create table boat(
+    bid int primary key,
+    bname varchar(20),
+    colour varchar(10));
+   
+create table sailor(
+    sid int primary key,
+    sname varchar(10),
+    age int,
+    rating int);
+    
+create table reserves(
+    bid int,
+    sid int,
+    day varchar(10),
+    primary key(bid,sid),
+    foreign key(bid) references boat(bid) on delete cascade,
+    foreign key(sid) references sailor(sid) on delete cascade);
+    
+insert into boat values(1,'Black Pearl','black');
+insert into boat values(2,'Royal Z','white');
+insert into boat values(3,'Destiny','white');
+insert into boat values(4,'Marine','blue');
+
+insert into sailor values(10,'Ram',45,9);
+insert into sailor values(20,'Shyam',50,10);
+
+insert into reserves values(2,10,'Friday');
+insert into reserves values(3,10,'Monday');
+insert into reserves values(1,10,'Friday');
+insert into reserves values(3,20,'Sunday');
+insert into reserves values(4,20,'Monday');
+
+------------------------------------------------queries--------------------------------------- 
+
+--a)
+
+select bid
+from sailor,reserves
+where sailor.sid=reserves.sid and sname='Ram';
+
+
+--b)
+
+select bid,sname
+from reserves,sailor
+where reserves.sid=sailor.sid;
+
+--------------------------------------------(OR)--------------------------------------
+select bid,sid
+from reserves;
+
+--c)
+
+select count(bid),sname
+from sailor,reserves
+where sailor.sid=reserves.sid
+group by sname;
+
+--d)
+
+select count(bid) total_no
+from reserves,sailor
+where reserves.sid=sailor.sid and sname='Ram';
+
+--e)
+
+select bname
+from boat
+where colour='white';
+
+
+
