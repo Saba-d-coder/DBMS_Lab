@@ -1,0 +1,83 @@
+create table part(
+    pno int primary key,
+    pname varchar(20),
+    colour varchar(10));
+   
+create table warehouse(
+    wno int primary key,
+    wname varchar(10),
+    city varchar(50));
+    
+create table shipment(
+    pno int,
+    wno int,
+    quantity int,
+    date varchar(10),
+    primary key(pno,wno),
+    foreign key(pno) references part(pno) on delete cascade,
+    foreign key(wno) references warehouse(wno) on delete cascade);
+    
+insert into part values(1,'bolts','black');
+insert into part values(2,'nuts','green');
+insert into part values(3,'screws','black');
+insert into part values(4,'lever','blue');
+
+insert into warehouse values(10,'Amazon','Bangalore');
+insert into warehouse values(20,'Flipkart','Mumbai');
+
+insert into shipment values(2,10,15,'12oct');
+insert into shipment values(3,10,11,'10oct');
+insert into shipment values(1,10,5,'8aug');
+insert into shipment values(3,20,35,'9sept');
+insert into shipment values(4,20,10,'25jan');
+
+------------------------------------queries--------------------------- 
+
+--a)
+select wname 
+from warehouse,part,shipment
+where warehouse.wno =shipment.wno and part.pno=shipment.pno and colour='black';
+
+-------------------------------------(OR)----------------------------------------
+
+--a)
+
+select wname 
+from warehouse,part,shipment
+where warehouse.wno =shipment.wno and part.pno=shipment.pno and colour='black'
+group by wname;
+
+--b)
+
+select pno,wno
+from shipment;
+
+--c)
+
+select count(pno) total,wno
+from shipment
+group by wno;
+
+----------------------------------(OR)---------------------------------------
+
+select count(pno) total,wname
+from shipment,warehouse
+where shipment.wno=warehouse.wno
+group by wname;
+
+
+--d)
+
+select pname
+from part,warehouse,shipment
+where warehouse.wno=shipment.wno and part.pno=shipment.pno and wname='Amazon';
+
+
+--e)
+
+select sum(quantity) total_quantity,wname
+from warehouse,shipment
+where warehouse.wno=shipment.wno
+group by wname;
+
+

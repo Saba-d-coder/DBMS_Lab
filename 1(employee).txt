@@ -1,0 +1,58 @@
+create table employee(
+    ssn int primary key,
+    name varchar(20),
+    deptno int);
+   
+create table project(
+    prno int primary key,
+    area varchar(10));
+    
+create table assigned_to(
+    ssn int,
+    pno int,
+    primary key(ssn,pno),foreign key(ssn) references employee(ssn) on delete cascade,
+    foreign key(pno) references project(prno) on delete cascade);
+    
+insert into employee values(1,'saba',12);
+insert into employee values(2,'kritika',13);
+insert into employee values(3,'livia',12);
+insert into employee values(4,'mahima',13);
+insert into employee values(5,'mrudoola',12);
+
+
+insert into project values(20,'dbms');
+insert into project values(12,'testing');
+insert into project values(15,'analysis');
+
+insert into assigned_to values(1,15);
+insert into assigned_to values(2,20);
+insert into assigned_to values(3,12);
+insert into assigned_to values(3,20);
+insert into assigned_to values(2,12);
+
+-------------------------queries--------------------------------
+
+--a)
+
+select ssn
+from assigned_to,project
+where pno=prno and area='dbms';
+
+--b)
+
+select count(ssn) total_no_of_employees,deptno
+from employee
+group by deptno;
+
+--c)
+
+update assigned_to set pno=20 where ssn=1;
+
+select * from assigned_to;
+
+--d)
+
+select name
+from employee
+where deptno=12;
+
