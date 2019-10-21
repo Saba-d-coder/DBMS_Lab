@@ -40,8 +40,6 @@ where warehouse.wno =shipment.wno and part.pno=shipment.pno and colour='black';
 
 -------------------------------------(OR)----------------------------------------
 
---a)
-
 select wname 
 from warehouse,part,shipment
 where warehouse.wno =shipment.wno and part.pno=shipment.pno and colour='black'
