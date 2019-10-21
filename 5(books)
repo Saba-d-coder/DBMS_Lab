@@ -13,7 +13,7 @@ create table student(
 create table borrow(
     isbn int,
     usn varchar(10),
-    date varchar(10),
+    date date,
     primary key(isbn,usn),
     foreign key(isbn) references book(isbn) on delete cascade,
     foreign key(usn) references student(usn) on delete cascade);
@@ -26,10 +26,10 @@ insert into student values('1ms17is052','Saba',5,2);
 insert into student values('1ms17is053','Kritika',5,10);    
 insert into student values('1ms17is056','Livia',5,6);
     
-insert into borrow values(123,'1ms17is052','10aug');
-insert into borrow values(123,'1ms17is053','12sept');
-insert into borrow values(100,'1ms17is052','9feb');
-insert into borrow values(200,'1ms17is056','10jun');
+insert into borrow values(123,'1ms17is052','2019-01-19');
+insert into borrow values(123,'1ms17is053','2019-03-15');
+insert into borrow values(100,'1ms17is052','2019-05-28');
+insert into borrow values(200,'1ms17is056','2019-11-25');
     
 
 -----------------------------------------------queries-------------------------------------------
