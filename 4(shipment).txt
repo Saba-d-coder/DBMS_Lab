@@ -52,6 +52,12 @@ group by wname;
 select pno,wno
 from shipment;
 
+--------------------------------(OR)--------------------------------------
+select pno,wname
+from shipment,warehouse
+where shipment.wno=warehouse.wno;
+
+
 --c)
 
 select count(pno) total,wno
