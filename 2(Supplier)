@@ -52,6 +52,11 @@ select * from part;
 
 --d)
 
+update part set pno=6 where pno=5;
+select * from part;
+
+--e)
+
 select sname
 from supply,supplier
 where supply.sno=supplier.sno and pno=3;
