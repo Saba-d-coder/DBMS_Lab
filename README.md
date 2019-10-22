@@ -4,7 +4,7 @@ Contains answers to all the SQL queries
 
 For the ouput refer the following links
 
-1: https://rextester.com/ZZBB99714
+1: https://rextester.com/WJG52400
 
 2: https://rextester.com/FDQB68253
 
