@@ -48,13 +48,10 @@ group by wname;
 
 --b)
 
-select pno,wno
-from shipment;
-
---------------------------------(OR)--------------------------------------
-select pno,wname
-from shipment,warehouse
-where shipment.wno=warehouse.wno;
+select pno
+from shipment
+group by pno
+having count(wno)=(select count(wno) from warehouse);
 
 
 --c)
