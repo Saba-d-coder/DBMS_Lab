@@ -56,3 +56,8 @@ select name
 from employee
 where deptno=12;
 
+--e)
+
+select name
+from employee,assigned_to
+where employee.ssn=assigned_to.ssn and pno=12;
