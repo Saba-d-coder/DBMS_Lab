@@ -42,13 +42,10 @@ where sailor.sid=reserves.sid and sname='Ram';
 
 --b)
 
-select bid,sname
-from reserves,sailor
-where reserves.sid=sailor.sid;
-
---------------------------------------------(OR)--------------------------------------
-select bid,sid
-from reserves;
+select bid
+from reserves
+group by bid
+having count(sid)=(select count(sid) from sailor);
 
 --c)
 
