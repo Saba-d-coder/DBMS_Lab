@@ -1,3 +1,5 @@
+
+-- procedure
 create or replace procedure fact(n in number,res out number) is
     begin
         if n=1 or n=0 then
@@ -10,6 +12,7 @@ create or replace procedure fact(n in number,res out number) is
 end;
 /
 
+--main program
 declare
     num number :=&num1;
     res number;
