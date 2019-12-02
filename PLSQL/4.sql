@@ -17,6 +17,8 @@ begin
         insert into copy values(cus_row.ssn,cus_row.name,cus_row.place);
     end loop;
     
+    dbms_output.put_line('*****************Copy Table ***************');
+    dbms_output.put_line('ID              Name                 Place');    
     for copy_row in copy_cursor loop
 		dbms_output.put_line(copy_row.id||'    '||copy_row.name||'    '||copy_row.place);
 	end loop;
