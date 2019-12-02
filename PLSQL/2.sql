@@ -7,6 +7,6 @@ begin
     
     v_count:=SQL%rowcount;
     
-    dbms_output.put_line('Total rows updated:'||v_count);
+    dbms_output.put_line('Number of employees awardede the increase:'||v_count);
 end;
 /
