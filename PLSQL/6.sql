@@ -1,25 +1,25 @@
 
 -- procedure
-create or replace procedure fact(n in number,res out number) is
-    begin
-        if n=1 or n=0 then
-            res:=1;
-        else
-            fact(n-1,res);
-            res:= n * res;
-        end if;
+create or replace procedure fact(n in number) is
+    i number:=1;
+    f number:=1;
+begin
+    while(i<n+1) loop
+        f:=f*i;
+        i:=i+1;
+    end loop;
+
+    dbms_output.put_line('Factorial of ' || n ||' is: '||f);
 
 end;
 /
-
+                         
 --main program
+
 declare
-    num number :=&num1;
-    res number;
+    n number :=&num;
 
 begin
-    fact(num,res);
-    dbms_output.put_line('Factorial of ' || num || ' is: '|| res);
-
+    fact(n);
 end;
 /
